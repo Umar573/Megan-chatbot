@@ -1,0 +1,245 @@
+/* VARIABLES FOR LIGHT/DARK THEMES */
+:root {
+  --color-primary: #ff4081;
+  --color-user: #4caf50;
+  --color-bot-light: #ffffff;
+  --color-bot-dark: #2c2c2c;
+
+  --bg-light: #f5f5f5;
+  --bg-dark: #121212;
+
+  --text-light: #000;
+  --text-dark: #f5f5f5;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* DARK MODE */
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/* MAIN CHAT WRAPPER */
+.chat-container {
+  background-color: #fff;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(6px);
+}
+
+body.dark-mode .chat-container {
+  background-color: #1e1e1e;
+}
+
+/* HEADER BAR */
+.header {
+  background-color: var(--color-primary);
+  color: white;
+  text-align: center;
+  padding: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* CHAT AREA */
+.chat-box {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  gap: 10px;
+}
+
+/* USER INPUT AREA */
+.input-area {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.input-area button {
+  background-color: #4A90E2;
+  border: none;
+  padding: 10px;
+  margin-left: 6px;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.input-area button:hover {
+  background-color: #3a78c2;
+}
+
+.input-area button:active {
+  transform: scale(0.95);
+}
+
+.input-area button svg {
+  fill: white;
+}
+
+
+.input-area button:hover {
+  background-color: #e91e63;
+}
+
+/* MESSAGE BUBBLES */
+.message {
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-radius: 16px;
+  max-width: 75%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  word-wrap: break-word;
+  font-size: 15px;
+  line-height: 1.4;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.user {
+  background-color: #4a90e2;
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.bot {
+  background-color: #ffffff;
+  color: #333;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+/* USER MESSAGES (Right Side) */
+.user {
+  align-self: flex-end;
+  background-color: var(--color-user);
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+/* BOT MESSAGES (Left Side) */
+.bot {
+  align-self: flex-start;
+  background-color: var(--color-bot-light);
+  color: #000;
+  border-bottom-left-radius: 0;
+}
+
+body.dark-mode .bot {
+  background-color: var(--color-bot-dark);
+  color: var(--text-dark);
+}
+
+/* TYPING INDICATOR */
+.typing {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* TOGGLE DARK MODE SWITCH */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px; width: 18px;
+  left: 4px; bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--color-primary);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+.user::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  bottom: 0;
+  border: 8px solid transparent;
+  border-left-color: #4a90e2;
+  border-bottom: 0;
+  margin-bottom: -1px;
+}
+
+.bot::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  bottom: 0;
+  border: 8px solid transparent;
+  border-right-color: #ffffff;
+  border-bottom: 0;
+  margin-bottom: -1px;
+}
